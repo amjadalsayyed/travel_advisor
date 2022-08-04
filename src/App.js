@@ -25,7 +25,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const filteredPlaces = places.filter((place) => place.rating > rating);
+    const filteredPlaces = places?.filter((place) => place.rating > rating);
     setFilteredPlaces(filteredPlaces);
   }, [rating]);
 
@@ -46,7 +46,9 @@ function App() {
       <Grid container spacing={3} style={{ width: "100%" }}>
         <Grid item xs={12} md={4}>
           <List
-            places={filteredPlaces.length ? filteredPlaces : places}
+            places={
+              filteredPlaces && filteredPlaces.length ? filteredPlaces : places
+            }
             childClicked={childClicked}
             isLoading={isLoading}
             type={type}
@@ -60,7 +62,9 @@ function App() {
             setCoordinates={setCoordinates}
             setBounds={setBounds}
             coordinates={coordinates}
-            places={filteredPlaces.length ? filteredPlaces : places}
+            places={
+              filteredPlaces && filteredPlaces.length ? filteredPlaces : places
+            }
             setChildClicked={setChildClicked}
           />
         </Grid>
